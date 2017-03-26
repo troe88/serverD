@@ -46,8 +46,11 @@ void MyServer::connectionsHandler(fd_set *set) {
 void MyServer::messageHandler(fd_set *set) {
 	for (auto client : clients) {
 		if (FD_ISSET(client, set)) {
+//			cout << "flag" << endl;
 			char *buf = new char[SIZE];
 			ssize_t len = recv(client, buf, SIZE, 0);
+			cout << "len: " << len << endl;
+			cout << "msg: " << buf << endl;
 			string rawMsg(buf, len);
 
 			std::stringstream resultStream;
@@ -65,7 +68,8 @@ void MyServer::messageHandler(fd_set *set) {
 
 			for (auto receiver : clients) {
 				cout << "To client(" << receiver << "): " << resultMsg;
-				send(receiver, resultMsg.c_str(), resultMsg.length(), 0);
+				int a = send(receiver, resultMsg.c_str(), resultMsg.length(), 0);
+				cout << "msg:" << a << endl;
 			}
 		}
 	}

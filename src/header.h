@@ -23,6 +23,10 @@
 #include <iostream>
 #include <algorithm>
 
+#include <fstream>
+#include <iostream>
+#include <syslog.h>
+
 using namespace std;
 
 

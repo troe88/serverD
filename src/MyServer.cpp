@@ -27,9 +27,9 @@ void MyServer::init() {
 void MyServer::readSet(fd_set *read_set) {
 	FD_ZERO(read_set);
 	FD_SET(_socketDescriptor, read_set);
-for (auto client : clients) {
-	FD_SET(client, read_set);
-}
+	for (auto client : clients) {
+		FD_SET(client, read_set);
+	}
 }
 
 void MyServer::connectionsHandler(fd_set *set) {

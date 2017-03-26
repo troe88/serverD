@@ -5,7 +5,7 @@
  *      Author: dmitry
  */
 
-//#define DAEMON_MODE
+// #define DAEMON_MODE
 
 #include "MyServer.h"
 #include <sys/types.h>
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
 
 		signal(SIGHUP, signal_handler);
 		signal(SIGTERM, signal_handler);
-		openlog("web_server", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+		openlog("chat_server", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
 		srv_print(MakeString() << "start!", LOG_INFO);
 #endif
 		MyServer server(atoi(argv[1]));

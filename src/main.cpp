@@ -5,7 +5,7 @@
  *      Author: dmitry
  */
 
-//#define DAEMON_MODE
+// #define DAEMON_MODE
 
 #include "MyServer.h"
 #include "helper.h"
@@ -51,7 +51,6 @@ int main(int argc, char **argv) {
 	switch (pid) {
 		case 0: // child
 		{
-
 			umask(0);
 			setsid();
 
@@ -61,7 +60,7 @@ int main(int argc, char **argv) {
 
 			signal(SIGHUP, signal_handler);
 			signal(SIGTERM, signal_handler);
-			openlog("web_server", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+			openlog("chat_server", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
 			srv_print(MakeString() << "start!", LOG_INFO);
 #endif
 	try {
@@ -72,7 +71,10 @@ int main(int argc, char **argv) {
 	} catch (int code) {
 		switch (code) {
 		case 2:
-			srv_print(MakeString() << "Arguments error, -p <server_port_number> requred.", LOG_INFO);
+			srv_print(
+					MakeString()
+							<< "Arguments error, -p <server_port_number> requred.",
+					LOG_INFO);
 			break;
 		}
 	}
